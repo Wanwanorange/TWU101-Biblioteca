@@ -4,9 +4,9 @@ import java.util.ArrayList;
 public class Biblioteca {
 
     private PrintStream printStream;
-    private ArrayList<String> books;
+    private ArrayList<Book> books;
 
-    public Biblioteca(PrintStream printStream, ArrayList<String> books) {
+    public Biblioteca(PrintStream printStream, ArrayList<Book> books) {
         this.printStream = printStream;
         this.books = books;
     }
@@ -17,12 +17,8 @@ public class Biblioteca {
     }
 
     public void listBooks() {
-        for (String book: books) {
-            printStream.println(book);
+        for (Book book: books) {
+            printStream.println(book.toString());
         }
-    }
-
-    public void listBooksWithAuthorAndYear() {
-
     }
 }

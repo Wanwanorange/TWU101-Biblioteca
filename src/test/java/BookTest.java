@@ -14,7 +14,7 @@ public class BookTest {
 
     @Test
     public void shouldReturnBookDetails() {
-        assertEquals(book.toString(), "Harry Potter and the Philosopher's Stone\tJK Rowling\t1997");
+        assertEquals(book.toString(), "Harry Potter and the Philosopher's Stone\t|\tJK Rowling\t|\t1997");
     }
 
 }

@@ -11,6 +11,6 @@ public class Book {
     }
 
     public String toString() {
-        return title + "\t" + author + "\t" + yearPublished;
+        return title + "\t|\t" + author + "\t|\t" + yearPublished;
     }
 }

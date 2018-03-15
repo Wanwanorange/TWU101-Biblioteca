@@ -10,14 +10,14 @@ import static org.mockito.Mockito.mock;
 public class BibliotecaTest {
     private Biblioteca biblioteca;
     private PrintStream printstream;
-    ArrayList<String> books;
+    ArrayList<Book> books;
 
     @Before
     public void setUp() {
         books = new ArrayList<>();
-        books.add("Java");
-        books.add("Python");
-        books.add("Hunger Games");
+        books.add(new Book("Java", "Wanchen", 2020));
+        books.add(new Book("Python", "Andy", 2021));
+        books.add(new Book("Hunger Games", "Phoebe", 2022));
         printstream = mock(PrintStream.class);
         biblioteca = new Biblioteca(printstream, books);
     }
@@ -33,9 +33,9 @@ public class BibliotecaTest {
     public void shouldPrintListOfBooks() {
         biblioteca.listBooks();
 
-        Mockito.verify(printstream).println("Java");
-        Mockito.verify(printstream).println("Python");
-        Mockito.verify(printstream).println("Hunger Games");
+        Mockito.verify(printstream).println("Java\t|\tWanchen\t|\t2020");
+        Mockito.verify(printstream).println("Python\t|\tAndy\t|\t2021");
+        Mockito.verify(printstream).println("Hunger Games\t|\tPhoebe\t|\t2022");
     }
 
 

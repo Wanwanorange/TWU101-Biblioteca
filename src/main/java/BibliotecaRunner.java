@@ -4,10 +4,13 @@ import java.util.ArrayList;
 public class BibliotecaRunner {
 
     public static void main(String[] args) {
-        ArrayList<String> books = new ArrayList<>();
-        books.add("Cat in the Hat");
-        books.add("Headfirst Java");
-        books.add("SQL the hard way");
+        ArrayList<Book> books = new ArrayList<>();
+        Book cat_in_the_hat = new Book("Cat in the Hat", "Dr. Suess", 1956);
+        Book headfirst_java = new Book("Headfirst Java", "Someone", 1980);
+        Book sql = new Book("SQL the hard way", "Someone Else", 2017);
+        books.add(cat_in_the_hat);
+        books.add(headfirst_java);
+        books.add(sql);
 
         PrintStream printStream = new PrintStream(System.out);
         Biblioteca biblioteca = new Biblioteca(printStream, books);
