@@ -17,6 +17,11 @@ public class Biblioteca {
     }
 
     public void listBooks() {
+
+        if (books.isEmpty()) {
+            printStream.println("There are no books in the library.");
+        }
+
         for (Book book: books) {
             printStream.println(book.toString());
         }
