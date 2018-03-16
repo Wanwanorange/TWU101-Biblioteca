@@ -19,7 +19,7 @@ public class Biblioteca {
     public void start() {
         printStream.println("Welcome! Choose a menu option.");
         displayMenu();
-        printer.printString(menu.readUserMenuChoice());
+        runMenu();
     }
 
     public void listBooks() {
@@ -38,8 +38,7 @@ public class Biblioteca {
     }
 
 
-
-
-
-
+    public void runMenu() {
+        printer.printString(menu.readUserMenuChoice());
+    }
 }

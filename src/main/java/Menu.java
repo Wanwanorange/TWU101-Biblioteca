@@ -15,13 +15,16 @@ public class Menu {
     }
 
     public String readUserMenuChoice() {
+        String output = "";
         String choice = readLine();
         if (choice.equals("1")) {
-            return "You've selected List Books";
+            output = "You've selected List Books";
         }
         else {
-            return "That is an invalid menu option!";
+            output = "That is an invalid menu option!";
         }
+
+        return output;
     }
 
     public String readLine() {

@@ -79,8 +79,18 @@ public class BibliotecaTest {
         verify(printstream).println("You've selected List Books");
     }
 
-
-
+//    @Test
+//    public void shouldPromptInputWhenCurrentOptionIsInvalid() {
+//        Biblioteca mockBiblioteca = mock(Biblioteca.class);
+//        try {
+//            Mockito.when(bufferedReader.readLine()).thenReturn("squirrel");
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//
+//        verify(mockBiblioteca, times(1)).runMenu();
+//    }
+//
 
 
 
