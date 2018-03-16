@@ -36,5 +36,18 @@ public class MenuTest {
 
     }
 
+    @Test
+    public void shouldShowInvalidOptionMessage() {
+        try {
+            Mockito.when(bufferedReader.readLine()).thenReturn("squirrel");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        String message = menu.readUserMenuChoice();
+        assertEquals("That is an invalid menu option!", message);
+
+    }
+
+
 
 }

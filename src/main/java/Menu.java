@@ -20,7 +20,7 @@ public class Menu {
             return "You've selected List Books";
         }
         else {
-            return "";
+            return "That is an invalid menu option!";
         }
     }
 
