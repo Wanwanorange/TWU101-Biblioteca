@@ -7,13 +7,14 @@ import java.io.IOException;
 import java.io.PrintStream;
 import java.util.ArrayList;
 
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.mock;
 
 public class BibliotecaTest {
     private Biblioteca biblioteca;
     private PrintStream printstream;
     private BufferedReader bufferedReader;
-    ArrayList<Book> books;
+    private ArrayList<Book> books;
 
     @Before
     public void setUp() {
@@ -66,25 +67,12 @@ public class BibliotecaTest {
     public void shouldHaveMenuDisplayListBookOption() {
         biblioteca = new Biblioteca(printstream, bufferedReader, books);
         biblioteca.displayMenu();
-        Mockito.verify(printstream).println("1. List Books");
+        assertEquals("1. List Books", biblioteca.displayMenu());
     }
 
-    @Test
-    public void shouldRespondToUserInput() throws IOException {
-        books.add(new Book("Java", "Wanchen", 2020));
 
-        biblioteca = new Biblioteca(printstream, bufferedReader, books);
-        biblioteca.displayMenu();
-        Mockito.verify(printstream).println("Java\t|\tWanchen\t|\t2020");
-    }
 
-    @Test
-    public void shouldTakeUserMenuChoice() {
-        biblioteca = new Biblioteca(printstream, bufferedReader, books);
 
-        biblioteca.readUserMenuChoice();
-        Mockito.verify(printstream).println("You have selected the option List Books.");
-    }
 
 
 
