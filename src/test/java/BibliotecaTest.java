@@ -21,11 +21,17 @@ public class BibliotecaTest {
 
         printstream = mock(PrintStream.class);
         bufferedReader = mock(BufferedReader.class);
+
+        try {
+            Mockito.when(bufferedReader.readLine()).thenReturn("1");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 
     @Test
-    public void shouldPrintWelcomeMessage() throws IOException {
+    public void shouldPrintWelcomeMessage() {
         biblioteca = new Biblioteca(printstream, bufferedReader, books);
 
         biblioteca.start();
@@ -57,7 +63,7 @@ public class BibliotecaTest {
     }
 
     @Test
-    public void shouldHaveMenuDisplayListBookOption() throws IOException {
+    public void shouldHaveMenuDisplayListBookOption() {
         biblioteca = new Biblioteca(printstream, bufferedReader, books);
         biblioteca.displayMenu();
         Mockito.verify(printstream).println("1. List Books");
@@ -69,8 +75,15 @@ public class BibliotecaTest {
 
         biblioteca = new Biblioteca(printstream, bufferedReader, books);
         biblioteca.displayMenu();
-        Mockito.when(bufferedReader.readLine()).thenReturn("1");
         Mockito.verify(printstream).println("Java\t|\tWanchen\t|\t2020");
+    }
+
+    @Test
+    public void shouldTakeUserMenuChoice() {
+        biblioteca = new Biblioteca(printstream, bufferedReader, books);
+
+        biblioteca.readUserMenuChoice();
+        Mockito.verify(printstream).println("You have selected the option List Books.");
     }
 
 
