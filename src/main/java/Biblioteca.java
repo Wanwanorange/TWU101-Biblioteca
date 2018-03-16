@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class Biblioteca {
 
     private PrintStream printStream;
+    private Printer printer;
     private BufferedReader bufferedReader;
     private ArrayList<Book> books;
     private Menu menu;
@@ -14,6 +15,7 @@ public class Biblioteca {
         this.bufferedReader = bufferedReader;
         this.books = books;
         menu = new Menu(bufferedReader);
+        printer = new Printer(printStream);
     }
 
     public void start() {
@@ -34,6 +36,7 @@ public class Biblioteca {
     }
 
     public String displayMenu() {
+        printer.printString(menu.returnOptions());
         return menu.returnOptions();
 
     }
