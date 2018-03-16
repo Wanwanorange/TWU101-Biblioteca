@@ -1,3 +1,6 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.util.ArrayList;
 
@@ -13,8 +16,13 @@ public class BibliotecaRunner {
         books.add(sql);
 
         PrintStream printStream = new PrintStream(System.out);
-        Biblioteca biblioteca = new Biblioteca(printStream, books);
-        biblioteca.start();
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        Biblioteca biblioteca = new Biblioteca(printStream, bufferedReader, books);
+        try {
+            biblioteca.start();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 }
