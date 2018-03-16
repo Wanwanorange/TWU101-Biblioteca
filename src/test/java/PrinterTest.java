@@ -3,6 +3,7 @@ import org.junit.Test;
 
 import java.io.IOException;
 import java.io.PrintStream;
+import java.util.ArrayList;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
@@ -26,4 +27,19 @@ public class PrinterTest {
 
     }
 
+    @Test
+    public void shouldPrintArrayList() {
+        ArrayList<String> books = new ArrayList<>();
+
+
+        Book b1 = new Book("A Wrinkle In Time", "Madeleine L'engle", 1962);
+        Book b2 = new Book("The BFG", "Roald Dahl", 1982);
+        books.add(b1.toString());
+        books.add(b2.toString());
+
+        printer.printArray(books);
+        verify(printStream).println(b1.toString());
+        verify(printStream).println(b2.toString());
+
+    }
 }

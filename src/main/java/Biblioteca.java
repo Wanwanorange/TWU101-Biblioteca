@@ -6,13 +6,11 @@ public class Biblioteca {
 
     private PrintStream printStream;
     private Printer printer;
-    private BufferedReader bufferedReader;
     private ArrayList<Book> books;
     private Menu menu;
 
     public Biblioteca(PrintStream printStream, BufferedReader bufferedReader, ArrayList<Book> books) {
         this.printStream = printStream;
-        this.bufferedReader = bufferedReader;
         this.books = books;
         menu = new Menu(bufferedReader);
         printer = new Printer(printStream);
@@ -21,7 +19,7 @@ public class Biblioteca {
     public void start() {
         printStream.println("Welcome! Choose a menu option.");
         displayMenu();
-        //listBooks();
+        printer.printString(menu.readUserMenuChoice());
     }
 
     public void listBooks() {
@@ -35,10 +33,8 @@ public class Biblioteca {
         }
     }
 
-    public String displayMenu() {
+    public void displayMenu() {
         printer.printString(menu.returnOptions());
-        return menu.returnOptions();
-
     }
 
 

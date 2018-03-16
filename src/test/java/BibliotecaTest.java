@@ -7,8 +7,8 @@ import java.io.IOException;
 import java.io.PrintStream;
 import java.util.ArrayList;
 
-import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 
 public class BibliotecaTest {
     private Biblioteca biblioteca;
@@ -67,10 +67,17 @@ public class BibliotecaTest {
     public void shouldHaveMenuDisplayListBookOption() {
         biblioteca = new Biblioteca(printstream, bufferedReader, books);
         biblioteca.displayMenu();
-        assertEquals("1. List Books", biblioteca.displayMenu());
+        verify(printstream).println("1. List Books");
     }
 
-
+    @Test
+    public void shouldReadUserInputInStart() {
+        biblioteca = new Biblioteca(printstream, bufferedReader, books);
+        biblioteca.start();
+        verify(printstream).println("Welcome! Choose a menu option.");
+        verify(printstream).println("1. List Books");
+        verify(printstream).println("You've selected List Books");
+    }
 
 
 

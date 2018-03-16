@@ -5,6 +5,7 @@ public class Menu {
 
     private BufferedReader bufferedReader;
 
+
     public Menu(BufferedReader bufferedReader) {
         this.bufferedReader = bufferedReader;
     }
@@ -32,4 +33,6 @@ public class Menu {
         }
         return choice;
     }
+
+
 }
