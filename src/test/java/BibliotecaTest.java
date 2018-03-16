@@ -53,6 +53,15 @@ public class BibliotecaTest {
         Mockito.verify(printstream).println("There are no books in the library.");
     }
 
+    @Test
+    public void shouldHaveMenuDisplayListBookOption() {
+        biblioteca = new Biblioteca(printstream, books);
+        biblioteca.displayMenu();
+        Mockito.verify(printstream).println("1. List Books");
+    }
+
+
+
 
 
 

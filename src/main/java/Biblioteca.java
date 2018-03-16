@@ -13,6 +13,7 @@ public class Biblioteca {
 
     public void start() {
         printStream.println("Welcome");
+        displayMenu();
         listBooks();
     }
 
@@ -25,5 +26,9 @@ public class Biblioteca {
         for (Book book: books) {
             printStream.println(book.toString());
         }
+    }
+
+    public void displayMenu() {
+        printStream.println("1. List Books");
     }
 }
