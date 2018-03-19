@@ -23,7 +23,7 @@ public class Biblioteca {
         Boolean quit = false;
         while (quit==false) {
             displayMenu();
-            quit = readUserMenuChoice(); //this IS GONNA BE A PROBLEM, NO WAY TO GET THE 0 STRING
+            quit = readUserMenuChoice();
         }
     }
 

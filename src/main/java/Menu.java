@@ -1,13 +1,15 @@
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.PrintStream;
 
 public class Menu {
 
     private BufferedReader bufferedReader;
-
+    private PrintStream printStream;
 
     public Menu(BufferedReader bufferedReader) {
         this.bufferedReader = bufferedReader;
+        printStream = new PrintStream(System.out);
     }
 
     public String returnOptions() {
@@ -19,7 +21,7 @@ public class Menu {
         try {
             choice = bufferedReader.readLine();
         } catch (IOException e) {
-            e.printStackTrace();
+            printStream.println("That is an invalid menu option!\nPlease enter the number next to the option you want.");
         }
         return choice;
     }
