@@ -46,7 +46,7 @@ public class MenuTest {
             e.printStackTrace();
         }
         String message = menu.readUserMenuChoice();
-        assertEquals("That is an invalid menu option!", message);
+        assertEquals("That is an invalid menu option!\nPlease enter the number next to the option you want.", message);
 
     }
 

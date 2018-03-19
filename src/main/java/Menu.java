@@ -21,7 +21,7 @@ public class Menu {
             output = "You've selected List Books";
         }
         else {
-            output = "That is an invalid menu option!";
+            output = "That is an invalid menu option!\nPlease enter the number next to the option you want.";
         }
 
         return output;
