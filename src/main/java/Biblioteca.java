@@ -19,7 +19,7 @@ public class Biblioteca {
     public void start() {
         printStream.println("Welcome! Choose a menu option.");
         displayMenu();
-        runMenu();
+        printer.printString(readUserMenuChoice(menu.readLine()));
     }
 
     public void listBooks() {
@@ -33,12 +33,24 @@ public class Biblioteca {
         }
     }
 
+    public String readUserMenuChoice(String choice) {
+        String output = "";
+        if (choice.equals("1")) {
+            output = "You've selected List Books";
+        }
+        else {
+            output = "That is an invalid menu option!\nPlease enter the number next to the option you want.";
+        }
+
+        return output;
+    }
+
     public void displayMenu() {
         printer.printString(menu.returnOptions());
     }
 
 
-    public void runMenu() {
-        printer.printString(menu.readUserMenuChoice());
-    }
+    //public void runMenu() {
+     //   printer.printString(menu.readUserMenuChoice());
+  //  }
 }

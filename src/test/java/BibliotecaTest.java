@@ -1,3 +1,4 @@
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -7,6 +8,7 @@ import java.io.IOException;
 import java.io.PrintStream;
 import java.util.ArrayList;
 
+import static junit.framework.TestCase.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
@@ -77,6 +79,32 @@ public class BibliotecaTest {
         verify(printstream).println("Welcome! Choose a menu option.");
         verify(printstream).println("1. List Books");
         verify(printstream).println("You've selected List Books");
+    }
+
+    @Test
+    public void shouldReadUserInput() {
+        biblioteca = new Biblioteca(printstream, bufferedReader, books);
+        try {
+            Mockito.when(bufferedReader.readLine()).thenReturn("1");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        biblioteca.start();
+        verify(printstream).println("You've selected List Books");
+
+    }
+
+    @Test
+    public void shouldShowInvalidOptionMessage() {
+        biblioteca = new Biblioteca(printstream, bufferedReader, books);
+        try {
+            Mockito.when(bufferedReader.readLine()).thenReturn("squirrel");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        biblioteca.start();
+        verify(printstream).println("That is an invalid menu option!\nPlease enter the number next to the option you want.");
+
     }
 
 //    @Test

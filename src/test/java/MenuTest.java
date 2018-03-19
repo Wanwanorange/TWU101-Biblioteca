@@ -27,28 +27,8 @@ public class MenuTest {
         assertEquals("1. List Books", menuOptions);
     }
 
-    @Test
-    public void shouldReadUserInput() {
-        try {
-            Mockito.when(bufferedReader.readLine()).thenReturn("1");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        assertEquals("You've selected List Books", menu.readUserMenuChoice());
 
-    }
 
-    @Test
-    public void shouldShowInvalidOptionMessage() {
-        try {
-            Mockito.when(bufferedReader.readLine()).thenReturn("squirrel");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        String message = menu.readUserMenuChoice();
-        assertEquals("That is an invalid menu option!\nPlease enter the number next to the option you want.", message);
-
-    }
 
 
 
