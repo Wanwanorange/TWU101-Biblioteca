@@ -12,51 +12,47 @@ public class BibliotecaTest {
 
     private Biblioteca biblioteca;
     private BufferedReader bufferedReader;
-    private ArrayList<Book> books;
     private Printer printer;
     private Menu menu;
+    private ArrayList<Book> books;
+    private Book javaBook;
+    private Book pythonBook;
 
     @Before
     public void setUp() {
-        books = new ArrayList<>();
         bufferedReader = mock(BufferedReader.class);
         printer = mock(Printer.class);
         menu = new Menu(bufferedReader);
+
+        books = new ArrayList<>();
+        javaBook = new Book("Java", "Wanchen", 2020);
+        pythonBook = new Book("Python", "Andy", 2021);
+        books.add(javaBook);
+        books.add(pythonBook);
+        biblioteca = new Biblioteca(printer, bufferedReader, books, menu);
     }
 
     @Test
     public void shouldPrintListOfBooksWhenThereAreBooks() {
-        books.add(new Book("Java", "Wanchen", 2020));
-        books.add(new Book("Python", "Andy", 2021));
-        books.add(new Book("Hunger Games", "Phoebe", 2022));
-
-        biblioteca = new Biblioteca(printer, bufferedReader, books, menu);
-
         biblioteca.listBooks();
-
         verify(printer).printArray(books);
     }
 
     @Test
     public void shouldNotifyUserWhenThereAreNoBooks() {
-        biblioteca = new Biblioteca(printer, bufferedReader, books, menu);
-
+        biblioteca = new Biblioteca(printer, bufferedReader, new ArrayList<Book>(), menu);
         biblioteca.listBooks();
-
         Mockito.verify(printer).printString("There are no books in the library.");
     }
 
     @Test
     public void shouldHaveMenuDisplayListBookOption() {
-        biblioteca = new Biblioteca(printer, bufferedReader, books, menu);
         biblioteca.displayMenu();
         verify(printer).printString(menu.returnOptions());
     }
 
     @Test
     public void shouldListBooksWhenOptionIs1AndThereAreBooks() throws IOException {
-        books.add(new Book("Hunger Games", "Phoebe", 2022));
-        biblioteca = new Biblioteca(printer, bufferedReader, books, menu);
         Mockito.when(bufferedReader.readLine()).thenReturn("1");
 
         biblioteca.readUserMenuChoice();
@@ -66,7 +62,6 @@ public class BibliotecaTest {
 
     @Test
     public void shouldShowInvalidOptionMessage() throws IOException {
-        biblioteca = new Biblioteca(printer, bufferedReader, books, menu);
         Mockito.when(bufferedReader.readLine()).thenReturn("squirrel");
 
         biblioteca.readUserMenuChoice();
@@ -75,7 +70,6 @@ public class BibliotecaTest {
 
     @Test
     public void shouldShowGoodbyeMessageWhenUserSelectsQuit() throws IOException {
-        biblioteca = new Biblioteca(printer, bufferedReader, books, menu);
         Mockito.when(bufferedReader.readLine()).thenReturn("0");
         biblioteca.readUserMenuChoice();
         verify(printer).printString("Goodbye! Thank you for visiting la Biblioteca!");
@@ -83,7 +77,6 @@ public class BibliotecaTest {
 
     @Test
     public void shouldLetUserMakeMultipleSelections() throws IOException {
-        biblioteca = new Biblioteca(printer, bufferedReader, books, menu);
         Mockito.when(bufferedReader.readLine()).thenReturn("1").thenReturn("0");
         biblioteca.start();
         verify(printer).printString("Welcome! Choose a menu option.");
@@ -95,10 +88,6 @@ public class BibliotecaTest {
 
     @Test
     public void shouldPromptUserToEnterTitleAfterSelectisdfngCheckoutBooks() throws IOException {
-        Book javaBook = new Book("Java", "Wanchen", 2020);
-        books.add(javaBook);
-        biblioteca = new Biblioteca(printer, bufferedReader, books, menu);
-
         Mockito.when(bufferedReader.readLine()).thenReturn("2").thenReturn(javaBook.getTitle());
         biblioteca.readUserMenuChoice();
         verify(printer).printString("Please enter the title of the book you want to checkout: ");
@@ -106,7 +95,18 @@ public class BibliotecaTest {
         when(bufferedReader.readLine()).thenReturn("1");
         biblioteca.readUserMenuChoice();
         verify(printer).printString("You've selected List Books");
-        verify(printer, never()).printString(javaBook.toString());
+
+        ArrayList<Book> expectedAvailableBooks = new ArrayList<>();
+        expectedAvailableBooks.add(pythonBook);
+        verify(printer).printArray(expectedAvailableBooks);
     }
+
+    @Test
+    public void shouldPrintThankYouMessageAfterCheckout() throws IOException {
+        Mockito.when(bufferedReader.readLine()).thenReturn("2").thenReturn(javaBook.getTitle());
+        biblioteca.readUserMenuChoice();
+        verify(printer).printString("Thank you! Enjoy the book.");
+    }
+
 
 }

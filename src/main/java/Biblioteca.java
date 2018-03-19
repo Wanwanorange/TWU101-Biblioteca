@@ -50,15 +50,7 @@ public class Biblioteca {
             printer.printString("You've selected List Books");
             listBooks();
         } else if (choice.equals("2")) {
-            printer.printString("Please enter the title of the book you want to checkout: ");
-            String title = "";
-            try {
-                title = bufferedReader.readLine();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            Book checkoutItem = findBookByTitle(title);
-            checkoutItem.checkout();
+            checkoutBook();
         } else if (choice.equals("0")) {
             printer.printString("Goodbye! Thank you for visiting la Biblioteca!");
             return true;
@@ -66,6 +58,19 @@ public class Biblioteca {
             printer.printString("That is an invalid menu option!\nPlease enter the number next to the option you want.");
         }
         return false;
+    }
+
+    private void checkoutBook() {
+        printer.printString("Please enter the title of the book you want to checkout: ");
+        String title = "";
+        try {
+            title = bufferedReader.readLine();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Book checkoutItem = findBookByTitle(title);
+        checkoutItem.checkout();
+        printer.printString("Thank you! Enjoy the book.");
     }
 
     private Book findBookByTitle(String title) {
