@@ -4,45 +4,40 @@ import java.util.ArrayList;
 
 public class Biblioteca {
 
-    private PrintStream printStream;
     private Printer printer;
     private ArrayList<Book> books;
     private Menu menu;
 
-    public Biblioteca(PrintStream printStream, BufferedReader bufferedReader, ArrayList<Book> books) {
-        this.printStream = printStream;
+    public Biblioteca(Printer printer, BufferedReader bufferedReader, ArrayList<Book> books) {
         this.books = books;
         menu = new Menu(bufferedReader);
-        printer = new Printer(printStream);
+        this.printer = printer;
     }
 
     public void start() {
-        printStream.println("Welcome! Choose a menu option.");
+        printer.printString("Welcome! Choose a menu option.");
         displayMenu();
-        printer.printString(readUserMenuChoice(menu.readLine()));
+        readUserMenuChoice(menu.readLine());
     }
 
     public void listBooks() {
 
         if (books.isEmpty()) {
-            printStream.println("There are no books in the library.");
+            printer.printString("There are no books in the library.");
         }
 
-        for (Book book: books) {
-            printStream.println(book.toString());
-        }
+        printer.printArray(books);
     }
 
-    public String readUserMenuChoice(String choice) {
-        String output = "";
+    public void readUserMenuChoice(String choice) {
         if (choice.equals("1")) {
-            output = "You've selected List Books";
+            printer.printString("You've selected List Books");
+            listBooks();
         }
         else {
-            output = "That is an invalid menu option!\nPlease enter the number next to the option you want.";
+            printer.printString("That is an invalid menu option!\nPlease enter the number next to the option you want.");
         }
 
-        return output;
     }
 
     public void displayMenu() {

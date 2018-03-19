@@ -15,8 +15,9 @@ public class BibliotecaRunner {
         books.add(sql);
 
         PrintStream printStream = new PrintStream(System.out);
+        Printer printer = new Printer(printStream);
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-        Biblioteca biblioteca = new Biblioteca(printStream, bufferedReader, books);
+        Biblioteca biblioteca = new Biblioteca(printer, bufferedReader, books);
         biblioteca.start();
 
     }

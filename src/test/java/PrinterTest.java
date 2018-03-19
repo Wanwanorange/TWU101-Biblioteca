@@ -29,13 +29,13 @@ public class PrinterTest {
 
     @Test
     public void shouldPrintArrayList() {
-        ArrayList<String> books = new ArrayList<>();
+        ArrayList<Book> books = new ArrayList<>();
 
 
         Book b1 = new Book("A Wrinkle In Time", "Madeleine L'engle", 1962);
         Book b2 = new Book("The BFG", "Roald Dahl", 1982);
-        books.add(b1.toString());
-        books.add(b2.toString());
+        books.add(b1);
+        books.add(b2);
 
         printer.printArray(books);
         verify(printStream).println(b1.toString());

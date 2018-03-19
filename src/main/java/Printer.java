@@ -12,9 +12,9 @@ public class Printer {
         printStream.println(string);
     }
 
-    public void printArray(ArrayList<String> books) {
-        for (String book : books) {
-            printStream.println(book);
+    public void printArray(ArrayList<Book> books) {
+        for (Book book : books) {
+            printStream.println(book.toString());
         }
     }
 }
