@@ -24,7 +24,7 @@ public class MenuTest {
     public void shouldDisplayMenuOptions() {
 
         String menuOptions = menu.returnOptions();
-        assertEquals("1. List Books", menuOptions);
+        assertEquals("0. Quit\n1. List Books", menuOptions);
     }
 
 

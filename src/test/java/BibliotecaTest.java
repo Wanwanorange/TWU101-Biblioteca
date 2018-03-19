@@ -8,7 +8,6 @@ import java.io.IOException;
 import java.io.PrintStream;
 import java.util.ArrayList;
 
-import static junit.framework.TestCase.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
@@ -28,7 +27,7 @@ public class BibliotecaTest {
         printer = mock(Printer.class);
     }
 
-    
+
 
     @Test
     public void shouldPrintListOfBooksWhenThereAreBooks() {
@@ -56,7 +55,7 @@ public class BibliotecaTest {
     public void shouldHaveMenuDisplayListBookOption() {
         biblioteca = new Biblioteca(printer, bufferedReader, books);
         biblioteca.displayMenu();
-        verify(printer).printString("1. List Books");
+        verify(printer).printString("0. Quit\n1. List Books");
     }
 
 
@@ -71,9 +70,7 @@ public class BibliotecaTest {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        biblioteca.start();
-        verify(printer).printString("Welcome! Choose a menu option.");
-        verify(printer).printString("1. List Books");
+        biblioteca.readUserMenuChoice();
         verify(printer).printString("You've selected List Books");
         verify(printer).printArray(books);
     }
@@ -90,6 +87,20 @@ public class BibliotecaTest {
         verify(printer).printString("That is an invalid menu option!\nPlease enter the number next to the option you want.");
 
     }
+
+    @Test
+    public void shouldShowGoodbyeMessageWhenUserSelectsQuit(){
+        biblioteca = new Biblioteca(printer, bufferedReader, books);
+        try {
+            Mockito.when(bufferedReader.readLine()).thenReturn("0");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        biblioteca.readUserMenuChoice();
+        verify(printer).printString("Goodbye! Thank you for visiting la Biblioteca!");
+
+    }
+
 
 
 //    @Test

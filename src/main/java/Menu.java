@@ -11,10 +11,8 @@ public class Menu {
     }
 
     public String returnOptions() {
-        return "1. List Books";
+        return "0. Quit\n1. List Books";
     }
-
-
 
     public String readLine() {
         String choice = null;
