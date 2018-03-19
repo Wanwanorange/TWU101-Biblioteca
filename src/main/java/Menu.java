@@ -13,7 +13,7 @@ public class Menu {
     }
 
     public String returnOptions() {
-        return "0. Quit\n1. List Books";
+        return "0. Quit\n1. List Books\n2. Checkout item";
     }
 
     public String readLine() {

@@ -16,8 +16,10 @@ public class BibliotecaRunner {
 
         PrintStream printStream = new PrintStream(System.out);
         Printer printer = new Printer(printStream);
+
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-        Biblioteca biblioteca = new Biblioteca(printer, bufferedReader, books);
+        Menu menu = new Menu(bufferedReader);
+        Biblioteca biblioteca = new Biblioteca(printer, bufferedReader, books, menu);
         biblioteca.start();
 
     }
