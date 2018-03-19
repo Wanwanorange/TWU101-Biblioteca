@@ -16,8 +16,15 @@ public class Biblioteca {
 
     public void start() {
         printer.printString("Welcome! Choose a menu option.");
-        displayMenu();
-        readUserMenuChoice();
+        loopMenu();
+    }
+
+    public void loopMenu() {
+        Boolean quit = false;
+        while (quit==false) {
+            displayMenu();
+            quit = readUserMenuChoice(); //this IS GONNA BE A PROBLEM, NO WAY TO GET THE 0 STRING
+        }
     }
 
     public void listBooks() {
@@ -29,26 +36,21 @@ public class Biblioteca {
         printer.printArray(books);
     }
 
-    public void readUserMenuChoice() {
+    public boolean readUserMenuChoice() {
         String choice = menu.readLine();
         if (choice.equals("1")) {
             printer.printString("You've selected List Books");
             listBooks();
         } else if (choice.equals("0")) {
             printer.printString("Goodbye! Thank you for visiting la Biblioteca!");
-        }
-        else {
+            return true;
+        } else {
             printer.printString("That is an invalid menu option!\nPlease enter the number next to the option you want.");
         }
-
+        return false;
     }
 
     public void displayMenu() {
         printer.printString(menu.returnOptions());
     }
-
-
-    //public void runMenu() {
-     //   printer.printString(menu.readUserMenuChoice());
-  //  }
 }
